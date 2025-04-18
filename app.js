@@ -76,7 +76,12 @@ main()
 
 
 async function main(){
-    await mongoose.connect( dbUrl);
+    await mongoose.connect(dbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("MongoDB connected"))
+.catch((err) => console.log("Mongo connection error: ", err));
 }
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
